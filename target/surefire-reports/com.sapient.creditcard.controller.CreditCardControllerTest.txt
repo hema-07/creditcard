@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.sapient.creditcard.controller.CreditCardControllerTest
--------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.17 s - in com.sapient.creditcard.controller.CreditCardControllerTest

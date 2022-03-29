@@ -100,3 +100,11 @@ Attached screenshot of my local Jenkins CI/CD page is in docs folder.
 https://en.wikipedia.org/wiki/Luhn_algorithm
 
 https://en.wikipedia.org/wiki/Luhn_algorithm#Example_for_validating_check_digit
+
+
+### Sonar Qube
+
+    mvn clean verify sonar:sonar \
+      -Dsonar.projectKey=CreditCard \
+      -Dsonar.host.url=http://localhost:9000 \
+      -Dsonar.login=e5c312631e238b2e9a24ab0acb1e0f31ce668d6a

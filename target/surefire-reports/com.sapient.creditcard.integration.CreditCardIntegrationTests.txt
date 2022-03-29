@@ -1,4 +1,24 @@
 -------------------------------------------------------------------------------
 Test set: com.sapient.creditcard.integration.CreditCardIntegrationTests
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.094 s - in com.sapient.creditcard.integration.CreditCardIntegrationTests
+Tests run: 5, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.894 s <<< FAILURE! - in com.sapient.creditcard.integration.CreditCardIntegrationTests
+test_Credit_add_endpoint_success  Time elapsed: 0.042 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<201> but was:<403>
+	at com.sapient.creditcard.integration.CreditCardIntegrationTests.test_Credit_add_endpoint_success(CreditCardIntegrationTests.java:65)
+
+test_add_endpoint_for_existing_card  Time elapsed: 0.01 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<500> but was:<403>
+	at com.sapient.creditcard.integration.CreditCardIntegrationTests.test_add_endpoint_for_existing_card(CreditCardIntegrationTests.java:83)
+
+test_add_endpoint_for_not_valid_card  Time elapsed: 0.004 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<500> but was:<403>
+	at com.sapient.creditcard.integration.CreditCardIntegrationTests.test_add_endpoint_for_not_valid_card(CreditCardIntegrationTests.java:95)
+
+test_add_endpoint_for_missing_card_details  Time elapsed: 0.014 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<400> but was:<403>
+	at com.sapient.creditcard.integration.CreditCardIntegrationTests.test_add_endpoint_for_missing_card_details(CreditCardIntegrationTests.java:107)
+
+test_get_all_endpoint_for_success_scenario  Time elapsed: 0.216 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.sapient.creditcard.integration.CreditCardIntegrationTests.test_get_all_endpoint_for_success_scenario(CreditCardIntegrationTests.java:118)
+

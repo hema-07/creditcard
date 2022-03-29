@@ -22,12 +22,12 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube analysis') {
-            withSonarQubeEnv(credentialsId: 'f225455e-ea59-40fa-8af7-08176e86507a', installationName: 'My SonarQube Server') {
-              sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+        stage('SonarQube Analysis') {
+            def mvn = tool 'Default Maven';
+            withSonarQubeEnv() {
+              sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=CreditCard"
             }
           }
-        }
         stage('Verify') {
             steps {
                 withMaven(maven: 'Maven_3.6.0') {

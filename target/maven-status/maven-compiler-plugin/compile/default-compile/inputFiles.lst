@@ -6,7 +6,6 @@
 /Users/hemavathitamilmaran/IdeaProjects/creditcard/src/main/java/com/sapient/creditcard/controller/CreditCardController.java
 /Users/hemavathitamilmaran/IdeaProjects/creditcard/src/main/java/com/sapient/creditcard/util/Constants.java
 /Users/hemavathitamilmaran/IdeaProjects/creditcard/src/main/java/com/sapient/creditcard/entity/CreditCard.java
-/Users/hemavathitamilmaran/IdeaProjects/creditcard/src/main/java/com/sapient/creditcard/security/WebSecurityConfig.java
 /Users/hemavathitamilmaran/IdeaProjects/creditcard/src/main/java/com/sapient/creditcard/validator/CreditCardValidator.java
 /Users/hemavathitamilmaran/IdeaProjects/creditcard/src/main/java/com/sapient/creditcard/service/CreditCardService.java
 /Users/hemavathitamilmaran/IdeaProjects/creditcard/src/main/java/com/sapient/creditcard/exception/CustomResponseExceptionHandler.java

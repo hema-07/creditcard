@@ -1,0 +1,633 @@
+Started by user Hemavathi Tamilmaran
+Obtained Jenkinsfile from git https://github.com/hema-07/creditcard-api
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/hema-07/creditcard-api # timeout=10
+Fetching upstream changes from https://github.com/hema-07/creditcard-api
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.1 (Apple Git-130)'
+ > git fetch --tags --force --progress -- https://github.com/hema-07/creditcard-api +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 0df1dae69cf1705c7526d3992ff847114f8e4f07 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 0df1dae69cf1705c7526d3992ff847114f8e4f07 # timeout=10
+Commit message: "added spring security"
+ > git rev-list --no-walk 622194e42152b8791a8cd2f26b42c292485ba15b # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Compile)
+[Pipeline] withMaven
+[withMaven] Options: []
+[withMaven] Available options:
+[withMaven] using JDK installation provided by the build agent
+[withMaven] using Maven installation 'Maven_3.6.0'
+[Pipeline] {
+[Pipeline] sh
++ mvn clean compile
+----- withMaven Wrapper script -----
+Picked up JAVA_TOOL_OPTIONS: -Dmaven.ext.class.path="/Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven8c54f975/pipeline-maven-spy.jar" -Dorg.jenkinsci.plugins.pipeline.maven.reportsFolder="/Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven8c54f975"
+Apache Maven 3.6.0 (97c98ec64a1fdfee7767ce5ffb20918da4f719f3; 2018-10-24T19:41:47+01:00)
+Maven home: /Users/hemavathitamilmaran/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.6.0
+Java version: 16.0.1, vendor: Oracle Corporation, runtime: /Users/hemavathitamilmaran/Library/Java/JavaVirtualMachines/openjdk-16.0.1/Contents/Home
+Default locale: en_GB, platform encoding: UTF-8
+OS name: "mac os x", version: "11.1", arch: "x86_64", family: "mac"
+[INFO] [jenkins-event-spy] Generate /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven8c54f975/maven-spy-20210604-070418-1064430482977874905063.log.tmp ...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective settings
+[WARNING] Expected root element 'settings' but found 'pkg:package' (position: START_TAG seen ...e xmlns:pkg="http://schemas.microsoft.com/office/2006/xmlPackage">... @3:78)  @ /Users/hemavathitamilmaran/.m2/settings.xml, line 3, column 78
+[WARNING]
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.sapient:creditcard >-----------------------
+[INFO] Building CreditCard 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ creditcard ---
+[INFO] Deleting /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit/target
+[INFO]
+[INFO] --- maven-resources-plugin:3.2.0:resources (default-resources) @ creditcard ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO] Copying 1 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ creditcard ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 16 source files to /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit/target/classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.805 s
+[INFO] Finished at: 2021-06-04T07:04:25+01:00
+[INFO] ------------------------------------------------------------------------
+[INFO] [jenkins-event-spy] Generated /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven8c54f975/maven-spy-20210604-070418-1064430482977874905063.log
+[Pipeline] }
+[withMaven] artifactsPublisher - Archive artifact pom.xml under com/sapient/creditcard/0.0.1-SNAPSHOT/creditcard-0.0.1-SNAPSHOT.pom
+[withMaven] Jenkins Task Scanner Plugin not found, don't display results of source code scanning for 'TODO' and 'FIXME' in pipeline screen.
+[withMaven] Publishers: Pipeline Graph Publisher: 4 ms, Generated Artifacts Publisher: 41 ms, Open Task Scanner Publisher: 1 ms
+[Pipeline] // withMaven
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] withMaven
+[withMaven] Options: []
+[withMaven] Available options:
+[withMaven] using JDK installation provided by the build agent
+[withMaven] using Maven installation 'Maven_3.6.0'
+[Pipeline] {
+[Pipeline] sh
++ mvn clean package
+----- withMaven Wrapper script -----
+Picked up JAVA_TOOL_OPTIONS: -Dmaven.ext.class.path="/Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven1024fc40/pipeline-maven-spy.jar" -Dorg.jenkinsci.plugins.pipeline.maven.reportsFolder="/Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven1024fc40"
+Apache Maven 3.6.0 (97c98ec64a1fdfee7767ce5ffb20918da4f719f3; 2018-10-24T19:41:47+01:00)
+Maven home: /Users/hemavathitamilmaran/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.6.0
+Java version: 16.0.1, vendor: Oracle Corporation, runtime: /Users/hemavathitamilmaran/Library/Java/JavaVirtualMachines/openjdk-16.0.1/Contents/Home
+Default locale: en_GB, platform encoding: UTF-8
+OS name: "mac os x", version: "11.1", arch: "x86_64", family: "mac"
+[INFO] [jenkins-event-spy] Generate /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven1024fc40/maven-spy-20210604-070427-40014971185076036756669.log.tmp ...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective settings
+[WARNING] Expected root element 'settings' but found 'pkg:package' (position: START_TAG seen ...e xmlns:pkg="http://schemas.microsoft.com/office/2006/xmlPackage">... @3:78)  @ /Users/hemavathitamilmaran/.m2/settings.xml, line 3, column 78
+[WARNING]
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.sapient:creditcard >-----------------------
+[INFO] Building CreditCard 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ creditcard ---
+[INFO] Deleting /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit/target
+[INFO]
+[INFO] --- maven-resources-plugin:3.2.0:resources (default-resources) @ creditcard ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO] Copying 1 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ creditcard ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 16 source files to /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit/target/classes
+[INFO]
+[INFO] --- maven-resources-plugin:3.2.0:testResources (default-testResources) @ creditcard ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ creditcard ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 6 source files to /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit/target/test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.22.1:test (default-test) @ creditcard ---
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.sapient.creditcard.CreditcardApplicationTests
+07:04:37.371 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+07:04:37.388 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+07:04:37.439 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.sapient.creditcard.CreditcardApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+07:04:37.448 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sapient.creditcard.CreditcardApplicationTests], using SpringBootContextLoader
+07:04:37.452 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.sapient.creditcard.CreditcardApplicationTests]: class path resource [com/sapient/creditcard/CreditcardApplicationTests-context.xml] does not exist
+07:04:37.455 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.sapient.creditcard.CreditcardApplicationTests]: class path resource [com/sapient/creditcard/CreditcardApplicationTestsContext.groovy] does not exist
+07:04:37.456 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.sapient.creditcard.CreditcardApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+07:04:37.456 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.sapient.creditcard.CreditcardApplicationTests]: CreditcardApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+07:04:37.522 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.sapient.creditcard.CreditcardApplicationTests]
+07:04:37.596 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit/target/classes/com/sapient/creditcard/CreditCardApplication.class]
+07:04:37.600 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.sapient.creditcard.CreditCardApplication for test class com.sapient.creditcard.CreditcardApplicationTests
+07:04:37.700 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.sapient.creditcard.CreditcardApplicationTests]: using defaults.
+07:04:37.701 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+07:04:37.724 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5b67bb7e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@609db546, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@20f5281c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@56c4278e, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@301eda63, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3d246ea3, org.springframework.test.context.transaction.TransactionalTestExecutionListener@341814d3, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4397ad89, org.springframework.test.context.event.EventPublishingTestExecutionListener@59cba5a, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@1bd39d3c, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@6f19ac19, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@119cbf96, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@71329995, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@768fc0f2, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5454d35e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@20c0a64d, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@455b6df1]
+07:04:37.728 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@51133c06 testClass = CreditcardApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@4b213651 testClass = CreditcardApplicationTests, locations = '{}', classes = '{class com.sapient.creditcard.CreditCardApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@44821a96, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@732c2a62, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2dde1bff, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@193f604a, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@14555e0a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@56235b8e], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+07:04:37.794 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.5.0)
+
+2021-06-04 07:04:38.237  INFO 7022 --- [           main] c.s.c.CreditcardApplicationTests         : Starting CreditcardApplicationTests using Java 16.0.1 on hemavathis-mbp.mynet with PID 7022 (started by hemavathitamilmaran in /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit)
+2021-06-04 07:04:38.248  INFO 7022 --- [           main] c.s.c.CreditcardApplicationTests         : No active profile set, falling back to default profiles: default
+2021-06-04 07:04:38.412  WARN 7022 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-06-04 07:04:39.462  INFO 7022 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-06-04 07:04:39.543  INFO 7022 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 73 ms. Found 1 JPA repository interfaces.
+2021-06-04 07:04:40.385  INFO 7022 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-04 07:04:40.540  INFO 7022 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-04 07:04:40.852  INFO 7022 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-06-04 07:04:40.905  INFO 7022 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.31.Final
+2021-06-04 07:04:41.036  INFO 7022 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-06-04 07:04:41.257  INFO 7022 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-06-04 07:04:41.888  INFO 7022 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-06-04 07:04:41.897  INFO 7022 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-06-04 07:04:42.526  WARN 7022 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-06-04 07:04:43.478  INFO 7022 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-06-04 07:04:44.048  INFO 7022 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7df23848, org.springframework.security.web.context.SecurityContextPersistenceFilter@63af52a6, org.springframework.security.web.header.HeaderWriterFilter@27f31d91, org.springframework.security.web.authentication.logout.LogoutFilter@15c3585, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@539bb233, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5d449307, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3fc051ce, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b120d48, org.springframework.security.web.session.SessionManagementFilter@4853f592, org.springframework.security.web.access.ExceptionTranslationFilter@1a6a4595, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@b791e6e]
+2021-06-04 07:04:44.138  INFO 7022 --- [           main] c.s.c.CreditcardApplicationTests         : Started CreditcardApplicationTests in 6.328 seconds (JVM running for 7.85)
+2021-06-04 07:04:44.140  INFO 7022 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2021-06-04 07:04:44.142  INFO 7022 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.157 s - in com.sapient.creditcard.CreditcardApplicationTests
+[INFO] Running com.sapient.creditcard.integration.CreditCardIntegrationTests
+2021-06-04 07:04:44.429  INFO 7022 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sapient.creditcard.integration.CreditCardIntegrationTests], using SpringBootContextLoader
+2021-06-04 07:04:44.435  INFO 7022 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.sapient.creditcard.integration.CreditCardIntegrationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-04 07:04:44.436  INFO 7022 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.sapient.creditcard.integration.CreditCardIntegrationTests]: CreditCardIntegrationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-04 07:04:44.479  INFO 7022 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.sapient.creditcard.CreditCardApplication for test class com.sapient.creditcard.integration.CreditCardIntegrationTests
+2021-06-04 07:04:44.486  INFO 7022 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+2021-06-04 07:04:44.487  INFO 7022 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5364b481, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@62ec4146, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@362e709e, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@b0c4905, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7d3a2459, org.springframework.test.context.support.DirtiesContextTestExecutionListener@7d5cbcc9, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3833897c, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@519eab1e, org.springframework.test.context.event.EventPublishingTestExecutionListener@7d2a4598, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@65880400, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@415419a4, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@65b69ccb, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4a9f0360, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6f12b637, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@eea0b48, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@5feb8e9a, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@6d5d1204]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.5.0)
+
+2021-06-04 07:04:44.562  INFO 7022 --- [           main] c.s.c.i.CreditCardIntegrationTests       : Starting CreditCardIntegrationTests using Java 16.0.1 on hemavathis-mbp.mynet with PID 7022 (started by hemavathitamilmaran in /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit)
+2021-06-04 07:04:44.563  INFO 7022 --- [           main] c.s.c.i.CreditCardIntegrationTests       : No active profile set, falling back to default profiles: default
+2021-06-04 07:04:45.051  INFO 7022 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-06-04 07:04:45.090  INFO 7022 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 1 JPA repository interfaces.
+2021-06-04 07:04:45.511  INFO 7022 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2021-06-04 07:04:45.520  INFO 7022 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-06-04 07:04:45.521  INFO 7022 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2021-06-04 07:04:45.625  INFO 7022 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-06-04 07:04:45.625  INFO 7022 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1059 ms
+2021-06-04 07:04:45.675  INFO 7022 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-06-04 07:04:45.678  INFO 7022 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-06-04 07:04:45.678  INFO 7022 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-06-04 07:04:45.829  INFO 7022 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-06-04 07:04:45.839  INFO 7022 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-06-04 07:04:45.904  INFO 7022 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-06-04 07:04:45.904  INFO 7022 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-06-04 07:04:46.033  WARN 7022 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-06-04 07:04:46.402  INFO 7022 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@57fb6900, org.springframework.security.web.context.SecurityContextPersistenceFilter@6a887649, org.springframework.security.web.header.HeaderWriterFilter@4a2f1ae3, org.springframework.security.web.authentication.logout.LogoutFilter@4b6942a0, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5b8ba1d2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15e748b5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@27ada0e8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1eda853f, org.springframework.security.web.session.SessionManagementFilter@48b1b469, org.springframework.security.web.access.ExceptionTranslationFilter@190cc39e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1f67d37f]
+2021-06-04 07:04:46.463  INFO 7022 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
+2021-06-04 07:04:46.464  INFO 7022 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-06-04 07:04:46.465  INFO 7022 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2021-06-04 07:04:46.529  INFO 7022 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54053 (http) with context path ''
+2021-06-04 07:04:46.537  INFO 7022 --- [           main] c.s.c.i.CreditCardIntegrationTests       : Started CreditCardIntegrationTests in 2.045 seconds (JVM running for 10.249)
+2021-06-04 07:04:46.539  INFO 7022 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2021-06-04 07:04:46.540  INFO 7022 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.248 s - in com.sapient.creditcard.integration.CreditCardIntegrationTests
+[INFO] Running com.sapient.creditcard.controller.CreditCardControllerTest
+2021-06-04 07:04:47.694  INFO 7022 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sapient.creditcard.controller.CreditCardControllerTest], using SpringBootContextLoader
+2021-06-04 07:04:47.699  INFO 7022 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.sapient.creditcard.controller.CreditCardControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-04 07:04:47.700  INFO 7022 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.sapient.creditcard.controller.CreditCardControllerTest]: CreditCardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-04 07:04:47.720  INFO 7022 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.sapient.creditcard.CreditCardApplication for test class com.sapient.creditcard.controller.CreditCardControllerTest
+2021-06-04 07:04:47.724  INFO 7022 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+2021-06-04 07:04:47.725  INFO 7022 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@73624529, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@31e1c7c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@30ae3c46, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3dbcde0b, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5c168f98, org.springframework.test.context.support.DirtiesContextTestExecutionListener@2f98859a, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6e95c023, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3582077c, org.springframework.test.context.event.EventPublishingTestExecutionListener@5d00241b, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@365fde74, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@760b9444, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@5397d41e, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@f6b128b, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@470fc16c, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@6d0cc47d, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@56dae6, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@57fe6f2d]
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.213 s - in com.sapient.creditcard.controller.CreditCardControllerTest
+[INFO] Running com.sapient.creditcard.service.CreditCardServiceTest
+2021-06-04 07:04:47.917  INFO 7022 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sapient.creditcard.service.CreditCardServiceTest], using SpringBootContextLoader
+2021-06-04 07:04:47.923  INFO 7022 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.sapient.creditcard.service.CreditCardServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-04 07:04:47.924  INFO 7022 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.sapient.creditcard.service.CreditCardServiceTest]: CreditCardServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-04 07:04:47.945  INFO 7022 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.sapient.creditcard.CreditCardApplication for test class com.sapient.creditcard.service.CreditCardServiceTest
+2021-06-04 07:04:47.956  INFO 7022 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+2021-06-04 07:04:47.957  INFO 7022 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@32a541a8, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@63b85d97, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@50cadbae, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7d583602, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@65689000, org.springframework.test.context.support.DirtiesContextTestExecutionListener@441d3ddf, org.springframework.test.context.transaction.TransactionalTestExecutionListener@420c9959, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7e584f3c, org.springframework.test.context.event.EventPublishingTestExecutionListener@5f113867, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@72cf159f, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@54af9cce, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@683218c8, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3eb6d7a9, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@345f4e0d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@1c3eeda4, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@64b242b3, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@6cb1da13]
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.134 s - in com.sapient.creditcard.service.CreditCardServiceTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- maven-jar-plugin:3.2.0:jar (default-jar) @ creditcard ---
+[INFO] Building jar: /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit/target/creditcard-0.0.1-SNAPSHOT.jar
+[INFO]
+[INFO] --- spring-boot-maven-plugin:2.5.0:repackage (repackage) @ creditcard ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  23.516 s
+[INFO] Finished at: 2021-06-04T07:04:51+01:00
+[INFO] ------------------------------------------------------------------------
+[INFO] [jenkins-event-spy] Generated /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven1024fc40/maven-spy-20210604-070427-40014971185076036756669.log
+[Pipeline] }
+[withMaven] artifactsPublisher - Archive artifact pom.xml under com/sapient/creditcard/0.0.1-SNAPSHOT/creditcard-0.0.1-SNAPSHOT.pom
+[withMaven] artifactsPublisher - Archive artifact target/creditcard-0.0.1-SNAPSHOT.jar under com/sapient/creditcard/0.0.1-SNAPSHOT/creditcard-0.0.1-SNAPSHOT.jar
+[withMaven] junitPublisher - Archive test results for Maven artifact com.sapient:creditcard:jar:0.0.1-SNAPSHOT generated by maven-surefire-plugin:test (default-test): target/surefire-reports/*.xml
+[withMaven] junitPublisher - Jenkins JUnit Attachments Plugin not found, can't publish test attachments.Recording test results
+[withMaven] Jenkins Task Scanner Plugin not found, don't display results of source code scanning for 'TODO' and 'FIXME' in pipeline screen.
+[withMaven] Publishers: Pipeline Graph Publisher: 4 ms, Generated Artifacts Publisher: 266 ms, Junit Publisher: 32 ms, Open Task Scanner Publisher: 1 ms
+[Pipeline] // withMaven
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] withMaven
+[withMaven] Options: []
+[withMaven] Available options:
+[withMaven] using JDK installation provided by the build agent
+[withMaven] using Maven installation 'Maven_3.6.0'
+[Pipeline] {
+[Pipeline] sh
++ mvn test
+----- withMaven Wrapper script -----
+Picked up JAVA_TOOL_OPTIONS: -Dmaven.ext.class.path="/Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven086b6605/pipeline-maven-spy.jar" -Dorg.jenkinsci.plugins.pipeline.maven.reportsFolder="/Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven086b6605"
+Apache Maven 3.6.0 (97c98ec64a1fdfee7767ce5ffb20918da4f719f3; 2018-10-24T19:41:47+01:00)
+Maven home: /Users/hemavathitamilmaran/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.6.0
+Java version: 16.0.1, vendor: Oracle Corporation, runtime: /Users/hemavathitamilmaran/Library/Java/JavaVirtualMachines/openjdk-16.0.1/Contents/Home
+Default locale: en_GB, platform encoding: UTF-8
+OS name: "mac os x", version: "11.1", arch: "x86_64", family: "mac"
+[INFO] [jenkins-event-spy] Generate /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven086b6605/maven-spy-20210604-070453-7881565901717066712622.log.tmp ...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective settings
+[WARNING] Expected root element 'settings' but found 'pkg:package' (position: START_TAG seen ...e xmlns:pkg="http://schemas.microsoft.com/office/2006/xmlPackage">... @3:78)  @ /Users/hemavathitamilmaran/.m2/settings.xml, line 3, column 78
+[WARNING]
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.sapient:creditcard >-----------------------
+[INFO] Building CreditCard 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:3.2.0:resources (default-resources) @ creditcard ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO] Copying 1 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ creditcard ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:3.2.0:testResources (default-testResources) @ creditcard ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ creditcard ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-surefire-plugin:2.22.1:test (default-test) @ creditcard ---
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.sapient.creditcard.CreditcardApplicationTests
+07:04:58.821 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+07:04:58.837 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+07:04:58.893 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.sapient.creditcard.CreditcardApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+07:04:58.902 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sapient.creditcard.CreditcardApplicationTests], using SpringBootContextLoader
+07:04:58.906 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.sapient.creditcard.CreditcardApplicationTests]: class path resource [com/sapient/creditcard/CreditcardApplicationTests-context.xml] does not exist
+07:04:58.909 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.sapient.creditcard.CreditcardApplicationTests]: class path resource [com/sapient/creditcard/CreditcardApplicationTestsContext.groovy] does not exist
+07:04:58.909 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.sapient.creditcard.CreditcardApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+07:04:58.909 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.sapient.creditcard.CreditcardApplicationTests]: CreditcardApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+07:04:58.974 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.sapient.creditcard.CreditcardApplicationTests]
+07:04:59.042 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit/target/classes/com/sapient/creditcard/CreditCardApplication.class]
+07:04:59.044 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.sapient.creditcard.CreditCardApplication for test class com.sapient.creditcard.CreditcardApplicationTests
+07:04:59.129 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.sapient.creditcard.CreditcardApplicationTests]: using defaults.
+07:04:59.129 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+07:04:59.144 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@20f5281c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@56c4278e, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@301eda63, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3d246ea3, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@341814d3, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4397ad89, org.springframework.test.context.transaction.TransactionalTestExecutionListener@59cba5a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1bd39d3c, org.springframework.test.context.event.EventPublishingTestExecutionListener@6f19ac19, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@119cbf96, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@71329995, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@768fc0f2, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@5454d35e, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@20c0a64d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@455b6df1, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@4ddbbdf8, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@3f67593e]
+07:04:59.147 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@4241e0f4 testClass = CreditcardApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@4ebff610 testClass = CreditcardApplicationTests, locations = '{}', classes = '{class com.sapient.creditcard.CreditCardApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ba9117e, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@41fecb8b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@550ee7e5, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@57af006c, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@759d26fb, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@5abca1e0], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+07:04:59.222 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.5.0)
+
+2021-06-04 07:04:59.631  INFO 7068 --- [           main] c.s.c.CreditcardApplicationTests         : Starting CreditcardApplicationTests using Java 16.0.1 on hemavathis-mbp.mynet with PID 7068 (started by hemavathitamilmaran in /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit)
+2021-06-04 07:04:59.641  INFO 7068 --- [           main] c.s.c.CreditcardApplicationTests         : No active profile set, falling back to default profiles: default
+2021-06-04 07:04:59.802  WARN 7068 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-06-04 07:05:00.767  INFO 7068 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-06-04 07:05:00.843  INFO 7068 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 69 ms. Found 1 JPA repository interfaces.
+2021-06-04 07:05:01.682  INFO 7068 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-04 07:05:01.813  INFO 7068 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-04 07:05:02.108  INFO 7068 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-06-04 07:05:02.144  INFO 7068 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.31.Final
+2021-06-04 07:05:02.245  INFO 7068 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-06-04 07:05:02.404  INFO 7068 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-06-04 07:05:02.871  INFO 7068 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-06-04 07:05:02.878  INFO 7068 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-06-04 07:05:03.486  WARN 7068 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-06-04 07:05:04.438  INFO 7068 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-06-04 07:05:05.035  INFO 7068 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4feaa4b8, org.springframework.security.web.context.SecurityContextPersistenceFilter@6b03c35c, org.springframework.security.web.header.HeaderWriterFilter@237ee2e1, org.springframework.security.web.authentication.logout.LogoutFilter@72406594, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@421d7900, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1abea1ed, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2bb84aa5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4c6eaa65, org.springframework.security.web.session.SessionManagementFilter@1e4a4ed5, org.springframework.security.web.access.ExceptionTranslationFilter@1a712f12, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4e7151b3]
+2021-06-04 07:05:05.133  INFO 7068 --- [           main] c.s.c.CreditcardApplicationTests         : Started CreditcardApplicationTests in 5.902 seconds (JVM running for 7.274)
+2021-06-04 07:05:05.136  INFO 7068 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2021-06-04 07:05:05.139  INFO 7068 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.654 s - in com.sapient.creditcard.CreditcardApplicationTests
+[INFO] Running com.sapient.creditcard.integration.CreditCardIntegrationTests
+2021-06-04 07:05:05.381  INFO 7068 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sapient.creditcard.integration.CreditCardIntegrationTests], using SpringBootContextLoader
+2021-06-04 07:05:05.385  INFO 7068 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.sapient.creditcard.integration.CreditCardIntegrationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-04 07:05:05.388  INFO 7068 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.sapient.creditcard.integration.CreditCardIntegrationTests]: CreditCardIntegrationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-04 07:05:05.418  INFO 7068 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.sapient.creditcard.CreditCardApplication for test class com.sapient.creditcard.integration.CreditCardIntegrationTests
+2021-06-04 07:05:05.424  INFO 7068 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+2021-06-04 07:05:05.425  INFO 7068 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@433db56d, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@e23af91, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@396ec737, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@35d53cd8, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@1bed61d2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@8a11a19, org.springframework.test.context.transaction.TransactionalTestExecutionListener@47393345, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5b16e486, org.springframework.test.context.event.EventPublishingTestExecutionListener@2b85edc7, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@2bf45b7c, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@2559f65c, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@490704a5, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4d682397, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@444ebefd, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2ecf4b3e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@5f1c406e, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@5364b481]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.5.0)
+
+2021-06-04 07:05:05.515  INFO 7068 --- [           main] c.s.c.i.CreditCardIntegrationTests       : Starting CreditCardIntegrationTests using Java 16.0.1 on hemavathis-mbp.mynet with PID 7068 (started by hemavathitamilmaran in /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit)
+2021-06-04 07:05:05.517  INFO 7068 --- [           main] c.s.c.i.CreditCardIntegrationTests       : No active profile set, falling back to default profiles: default
+2021-06-04 07:05:05.941  INFO 7068 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-06-04 07:05:06.042  INFO 7068 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 1 JPA repository interfaces.
+2021-06-04 07:05:06.503  INFO 7068 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2021-06-04 07:05:06.528  INFO 7068 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-06-04 07:05:06.530  INFO 7068 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2021-06-04 07:05:06.744  INFO 7068 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-06-04 07:05:06.746  INFO 7068 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1225 ms
+2021-06-04 07:05:06.874  INFO 7068 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-06-04 07:05:06.879  INFO 7068 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-06-04 07:05:06.879  INFO 7068 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-06-04 07:05:07.063  INFO 7068 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-06-04 07:05:07.075  INFO 7068 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-06-04 07:05:07.148  INFO 7068 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-06-04 07:05:07.148  INFO 7068 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-06-04 07:05:07.349  WARN 7068 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-06-04 07:05:07.740  INFO 7068 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@51e14cb6, org.springframework.security.web.context.SecurityContextPersistenceFilter@65c66fc4, org.springframework.security.web.header.HeaderWriterFilter@174d5cf7, org.springframework.security.web.authentication.logout.LogoutFilter@7db63a01, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@a1be5cb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7a90f33d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7c7b27c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@715523b8, org.springframework.security.web.session.SessionManagementFilter@597eb9ac, org.springframework.security.web.access.ExceptionTranslationFilter@17810908, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1bf4a79b]
+2021-06-04 07:05:07.804  INFO 7068 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
+2021-06-04 07:05:07.804  INFO 7068 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-06-04 07:05:07.805  INFO 7068 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2021-06-04 07:05:07.871  INFO 7068 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54059 (http) with context path ''
+2021-06-04 07:05:07.878  INFO 7068 --- [           main] c.s.c.i.CreditCardIntegrationTests       : Started CreditCardIntegrationTests in 2.449 seconds (JVM running for 10.019)
+2021-06-04 07:05:07.880  INFO 7068 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2021-06-04 07:05:07.881  INFO 7068 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.789 s - in com.sapient.creditcard.integration.CreditCardIntegrationTests
+[INFO] Running com.sapient.creditcard.controller.CreditCardControllerTest
+2021-06-04 07:05:09.187  INFO 7068 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sapient.creditcard.controller.CreditCardControllerTest], using SpringBootContextLoader
+2021-06-04 07:05:09.197  INFO 7068 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.sapient.creditcard.controller.CreditCardControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-04 07:05:09.199  INFO 7068 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.sapient.creditcard.controller.CreditCardControllerTest]: CreditCardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-04 07:05:09.227  INFO 7068 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.sapient.creditcard.CreditCardApplication for test class com.sapient.creditcard.controller.CreditCardControllerTest
+2021-06-04 07:05:09.235  INFO 7068 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+2021-06-04 07:05:09.235  INFO 7068 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@42516ce2, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@74e111a8, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@6e6ec9c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7aecff85, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3393aa46, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4f0381cd, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7eb006bd, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@633dce39, org.springframework.test.context.event.EventPublishingTestExecutionListener@4dd28982, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@1e8c741c, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@60f70c9e, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@6db64abf, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@34714012, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@49a0fe14, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@11eb8842, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@4ed7db72, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@7018636a]
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.172 s - in com.sapient.creditcard.controller.CreditCardControllerTest
+[INFO] Running com.sapient.creditcard.service.CreditCardServiceTest
+2021-06-04 07:05:09.365  INFO 7068 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sapient.creditcard.service.CreditCardServiceTest], using SpringBootContextLoader
+2021-06-04 07:05:09.368  INFO 7068 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.sapient.creditcard.service.CreditCardServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-04 07:05:09.369  INFO 7068 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.sapient.creditcard.service.CreditCardServiceTest]: CreditCardServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-04 07:05:09.380  INFO 7068 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.sapient.creditcard.CreditCardApplication for test class com.sapient.creditcard.service.CreditCardServiceTest
+2021-06-04 07:05:09.384  INFO 7068 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+2021-06-04 07:05:09.384  INFO 7068 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@11b234aa, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1455a374, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@cfb462, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@54418834, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@54d6f172, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6d21a69f, org.springframework.test.context.transaction.TransactionalTestExecutionListener@10b063fd, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@48e859f7, org.springframework.test.context.event.EventPublishingTestExecutionListener@2bd67cf9, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@4ba32242, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@581f1f40, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@52b2c255, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4a9b4d4e, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@18f8c76d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@383d2e2d, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7c59f315, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@6c3830ed]
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.086 s - in com.sapient.creditcard.service.CreditCardServiceTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  17.004 s
+[INFO] Finished at: 2021-06-04T07:05:11+01:00
+[INFO] ------------------------------------------------------------------------
+[INFO] [jenkins-event-spy] Generated /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven086b6605/maven-spy-20210604-070453-7881565901717066712622.log
+[Pipeline] }
+[withMaven] artifactsPublisher - Archive artifact pom.xml under com/sapient/creditcard/0.0.1-SNAPSHOT/creditcard-0.0.1-SNAPSHOT.pom
+[withMaven] junitPublisher - Archive test results for Maven artifact com.sapient:creditcard:jar:0.0.1-SNAPSHOT generated by maven-surefire-plugin:test (default-test): target/surefire-reports/*.xml
+[withMaven] junitPublisher - Jenkins JUnit Attachments Plugin not found, can't publish test attachments.Recording test results
+[withMaven] Jenkins Task Scanner Plugin not found, don't display results of source code scanning for 'TODO' and 'FIXME' in pipeline screen.
+[withMaven] Publishers: Pipeline Graph Publisher: 5 ms, Generated Artifacts Publisher: 34 ms, Junit Publisher: 71 ms, Open Task Scanner Publisher: 5 ms
+[Pipeline] // withMaven
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Verify)
+[Pipeline] withMaven
+[withMaven] Options: []
+[withMaven] Available options:
+[withMaven] using JDK installation provided by the build agent
+[withMaven] using Maven installation 'Maven_3.6.0'
+[Pipeline] {
+[Pipeline] sh
++ mvn verify
+----- withMaven Wrapper script -----
+Picked up JAVA_TOOL_OPTIONS: -Dmaven.ext.class.path="/Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven6dd20ffe/pipeline-maven-spy.jar" -Dorg.jenkinsci.plugins.pipeline.maven.reportsFolder="/Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven6dd20ffe"
+Apache Maven 3.6.0 (97c98ec64a1fdfee7767ce5ffb20918da4f719f3; 2018-10-24T19:41:47+01:00)
+Maven home: /Users/hemavathitamilmaran/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.6.0
+Java version: 16.0.1, vendor: Oracle Corporation, runtime: /Users/hemavathitamilmaran/Library/Java/JavaVirtualMachines/openjdk-16.0.1/Contents/Home
+Default locale: en_GB, platform encoding: UTF-8
+OS name: "mac os x", version: "11.1", arch: "x86_64", family: "mac"
+[INFO] [jenkins-event-spy] Generate /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven6dd20ffe/maven-spy-20210604-070513-3972640666566169260024.log.tmp ...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective settings
+[WARNING] Expected root element 'settings' but found 'pkg:package' (position: START_TAG seen ...e xmlns:pkg="http://schemas.microsoft.com/office/2006/xmlPackage">... @3:78)  @ /Users/hemavathitamilmaran/.m2/settings.xml, line 3, column 78
+[WARNING]
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.sapient:creditcard >-----------------------
+[INFO] Building CreditCard 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:3.2.0:resources (default-resources) @ creditcard ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO] Copying 1 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ creditcard ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:3.2.0:testResources (default-testResources) @ creditcard ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ creditcard ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-surefire-plugin:2.22.1:test (default-test) @ creditcard ---
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.sapient.creditcard.CreditcardApplicationTests
+07:05:17.980 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+07:05:17.990 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+07:05:18.041 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.sapient.creditcard.CreditcardApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+07:05:18.050 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sapient.creditcard.CreditcardApplicationTests], using SpringBootContextLoader
+07:05:18.054 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.sapient.creditcard.CreditcardApplicationTests]: class path resource [com/sapient/creditcard/CreditcardApplicationTests-context.xml] does not exist
+07:05:18.057 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.sapient.creditcard.CreditcardApplicationTests]: class path resource [com/sapient/creditcard/CreditcardApplicationTestsContext.groovy] does not exist
+07:05:18.057 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.sapient.creditcard.CreditcardApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+07:05:18.058 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.sapient.creditcard.CreditcardApplicationTests]: CreditcardApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+07:05:18.127 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.sapient.creditcard.CreditcardApplicationTests]
+07:05:18.191 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit/target/classes/com/sapient/creditcard/CreditCardApplication.class]
+07:05:18.192 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.sapient.creditcard.CreditCardApplication for test class com.sapient.creditcard.CreditcardApplicationTests
+07:05:18.270 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.sapient.creditcard.CreditcardApplicationTests]: using defaults.
+07:05:18.271 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+07:05:18.285 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5b67bb7e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@609db546, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@20f5281c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@56c4278e, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@301eda63, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3d246ea3, org.springframework.test.context.transaction.TransactionalTestExecutionListener@341814d3, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4397ad89, org.springframework.test.context.event.EventPublishingTestExecutionListener@59cba5a, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@1bd39d3c, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@6f19ac19, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@119cbf96, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@71329995, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@768fc0f2, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5454d35e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@20c0a64d, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@455b6df1]
+07:05:18.290 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@51133c06 testClass = CreditcardApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@4b213651 testClass = CreditcardApplicationTests, locations = '{}', classes = '{class com.sapient.creditcard.CreditCardApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@44821a96, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@732c2a62, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2dde1bff, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@193f604a, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@14555e0a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@56235b8e], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+07:05:18.364 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.5.0)
+
+2021-06-04 07:05:18.752  INFO 7114 --- [           main] c.s.c.CreditcardApplicationTests         : Starting CreditcardApplicationTests using Java 16.0.1 on hemavathis-mbp.mynet with PID 7114 (started by hemavathitamilmaran in /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit)
+2021-06-04 07:05:18.758  INFO 7114 --- [           main] c.s.c.CreditcardApplicationTests         : No active profile set, falling back to default profiles: default
+2021-06-04 07:05:18.916  WARN 7114 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-06-04 07:05:19.920  INFO 7114 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-06-04 07:05:19.993  INFO 7114 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66 ms. Found 1 JPA repository interfaces.
+2021-06-04 07:05:20.829  INFO 7114 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-04 07:05:20.962  INFO 7114 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-04 07:05:21.270  INFO 7114 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-06-04 07:05:21.305  INFO 7114 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.31.Final
+2021-06-04 07:05:21.399  INFO 7114 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-06-04 07:05:21.568  INFO 7114 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-06-04 07:05:22.014  INFO 7114 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-06-04 07:05:22.020  INFO 7114 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-06-04 07:05:22.653  WARN 7114 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-06-04 07:05:23.665  INFO 7114 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-06-04 07:05:24.252  INFO 7114 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1b120d48, org.springframework.security.web.context.SecurityContextPersistenceFilter@10ae002e, org.springframework.security.web.header.HeaderWriterFilter@6b03c35c, org.springframework.security.web.authentication.logout.LogoutFilter@5b86f4cb, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@21b2579d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@44e7c06b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3c5bb37d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@236f3885, org.springframework.security.web.session.SessionManagementFilter@52d434c1, org.springframework.security.web.access.ExceptionTranslationFilter@4b1b2255, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@583b4af4]
+2021-06-04 07:05:24.396  INFO 7114 --- [           main] c.s.c.CreditcardApplicationTests         : Started CreditcardApplicationTests in 6.023 seconds (JVM running for 7.386)
+2021-06-04 07:05:24.399  INFO 7114 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2021-06-04 07:05:24.402  INFO 7114 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.773 s - in com.sapient.creditcard.CreditcardApplicationTests
+[INFO] Running com.sapient.creditcard.integration.CreditCardIntegrationTests
+2021-06-04 07:05:24.645  INFO 7114 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sapient.creditcard.integration.CreditCardIntegrationTests], using SpringBootContextLoader
+2021-06-04 07:05:24.649  INFO 7114 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.sapient.creditcard.integration.CreditCardIntegrationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-04 07:05:24.650  INFO 7114 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.sapient.creditcard.integration.CreditCardIntegrationTests]: CreditCardIntegrationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-04 07:05:24.697  INFO 7114 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.sapient.creditcard.CreditCardApplication for test class com.sapient.creditcard.integration.CreditCardIntegrationTests
+2021-06-04 07:05:24.706  INFO 7114 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+2021-06-04 07:05:24.707  INFO 7114 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@b0c4905, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7d3a2459, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@7d5cbcc9, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3833897c, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@519eab1e, org.springframework.test.context.support.DirtiesContextTestExecutionListener@7d2a4598, org.springframework.test.context.transaction.TransactionalTestExecutionListener@65880400, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@415419a4, org.springframework.test.context.event.EventPublishingTestExecutionListener@65b69ccb, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@4a9f0360, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@6f12b637, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@eea0b48, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@5feb8e9a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6d5d1204, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@1784a296, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@49ea4b65, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@4af6839c]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.5.0)
+
+2021-06-04 07:05:24.792  INFO 7114 --- [           main] c.s.c.i.CreditCardIntegrationTests       : Starting CreditCardIntegrationTests using Java 16.0.1 on hemavathis-mbp.mynet with PID 7114 (started by hemavathitamilmaran in /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit)
+2021-06-04 07:05:24.793  INFO 7114 --- [           main] c.s.c.i.CreditCardIntegrationTests       : No active profile set, falling back to default profiles: default
+2021-06-04 07:05:25.202  INFO 7114 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-06-04 07:05:25.225  INFO 7114 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 1 JPA repository interfaces.
+2021-06-04 07:05:25.692  INFO 7114 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2021-06-04 07:05:25.702  INFO 7114 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-06-04 07:05:25.702  INFO 7114 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2021-06-04 07:05:25.933  INFO 7114 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-06-04 07:05:25.935  INFO 7114 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1140 ms
+2021-06-04 07:05:26.062  INFO 7114 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-06-04 07:05:26.068  INFO 7114 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-06-04 07:05:26.069  INFO 7114 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-06-04 07:05:26.276  INFO 7114 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-06-04 07:05:26.288  INFO 7114 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-06-04 07:05:26.369  INFO 7114 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-06-04 07:05:26.370  INFO 7114 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-06-04 07:05:26.560  WARN 7114 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-06-04 07:05:26.988  INFO 7114 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1eda853f, org.springframework.security.web.context.SecurityContextPersistenceFilter@15e748b5, org.springframework.security.web.header.HeaderWriterFilter@48b1b469, org.springframework.security.web.authentication.logout.LogoutFilter@64641998, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@57fb6900, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@27ada0e8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@62fa4a88, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3f0751b0, org.springframework.security.web.session.SessionManagementFilter@6a887649, org.springframework.security.web.access.ExceptionTranslationFilter@4a2f1ae3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5b8ba1d2]
+2021-06-04 07:05:27.053  INFO 7114 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
+2021-06-04 07:05:27.053  INFO 7114 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-06-04 07:05:27.054  INFO 7114 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2021-06-04 07:05:27.109  INFO 7114 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54063 (http) with context path ''
+2021-06-04 07:05:27.117  INFO 7114 --- [           main] c.s.c.i.CreditCardIntegrationTests       : Started CreditCardIntegrationTests in 2.405 seconds (JVM running for 10.107)
+2021-06-04 07:05:27.121  INFO 7114 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2021-06-04 07:05:27.122  INFO 7114 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.72 s - in com.sapient.creditcard.integration.CreditCardIntegrationTests
+[INFO] Running com.sapient.creditcard.controller.CreditCardControllerTest
+2021-06-04 07:05:28.420  INFO 7114 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sapient.creditcard.controller.CreditCardControllerTest], using SpringBootContextLoader
+2021-06-04 07:05:28.427  INFO 7114 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.sapient.creditcard.controller.CreditCardControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-04 07:05:28.428  INFO 7114 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.sapient.creditcard.controller.CreditCardControllerTest]: CreditCardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-04 07:05:28.465  INFO 7114 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.sapient.creditcard.CreditCardApplication for test class com.sapient.creditcard.controller.CreditCardControllerTest
+2021-06-04 07:05:28.472  INFO 7114 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+2021-06-04 07:05:28.473  INFO 7114 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@31e1c7c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@30ae3c46, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@3dbcde0b, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5c168f98, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@2f98859a, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6e95c023, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3582077c, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5d00241b, org.springframework.test.context.event.EventPublishingTestExecutionListener@365fde74, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@760b9444, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@5397d41e, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@f6b128b, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@470fc16c, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6d0cc47d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@56dae6, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@57fe6f2d, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@6e43c01f]
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.154 s - in com.sapient.creditcard.controller.CreditCardControllerTest
+[INFO] Running com.sapient.creditcard.service.CreditCardServiceTest
+2021-06-04 07:05:28.588  INFO 7114 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sapient.creditcard.service.CreditCardServiceTest], using SpringBootContextLoader
+2021-06-04 07:05:28.590  INFO 7114 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.sapient.creditcard.service.CreditCardServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-04 07:05:28.591  INFO 7114 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.sapient.creditcard.service.CreditCardServiceTest]: CreditCardServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-04 07:05:28.600  INFO 7114 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.sapient.creditcard.CreditCardApplication for test class com.sapient.creditcard.service.CreditCardServiceTest
+2021-06-04 07:05:28.604  INFO 7114 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+2021-06-04 07:05:28.605  INFO 7114 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@63b85d97, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@50cadbae, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@7d583602, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@65689000, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@441d3ddf, org.springframework.test.context.support.DirtiesContextTestExecutionListener@420c9959, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7e584f3c, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5f113867, org.springframework.test.context.event.EventPublishingTestExecutionListener@72cf159f, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@54af9cce, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@683218c8, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@3eb6d7a9, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@345f4e0d, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@1c3eeda4, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@64b242b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6cb1da13, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@2250deae]
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.097 s - in com.sapient.creditcard.service.CreditCardServiceTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- maven-jar-plugin:3.2.0:jar (default-jar) @ creditcard ---
+[INFO]
+[INFO] --- spring-boot-maven-plugin:2.5.0:repackage (repackage) @ creditcard ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  17.595 s
+[INFO] Finished at: 2021-06-04T07:05:31+01:00
+[INFO] ------------------------------------------------------------------------
+[INFO] [jenkins-event-spy] Generated /Users/hemavathitamilmaran/.jenkins/workspace/pipeline-credit@tmp/withMaven6dd20ffe/maven-spy-20210604-070513-3972640666566169260024.log
+[Pipeline] }
+[withMaven] artifactsPublisher - Archive artifact pom.xml under com/sapient/creditcard/0.0.1-SNAPSHOT/creditcard-0.0.1-SNAPSHOT.pom
+[withMaven] artifactsPublisher - Archive artifact target/creditcard-0.0.1-SNAPSHOT.jar under com/sapient/creditcard/0.0.1-SNAPSHOT/creditcard-0.0.1-SNAPSHOT.jar
+[withMaven] junitPublisher - Archive test results for Maven artifact com.sapient:creditcard:jar:0.0.1-SNAPSHOT generated by maven-surefire-plugin:test (default-test): target/surefire-reports/*.xml
+[withMaven] junitPublisher - Jenkins JUnit Attachments Plugin not found, can't publish test attachments.Recording test results
+[withMaven] Jenkins Task Scanner Plugin not found, don't display results of source code scanning for 'TODO' and 'FIXME' in pipeline screen.
+[withMaven] Publishers: Pipeline Graph Publisher: 5 ms, Generated Artifacts Publisher: 264 ms, Junit Publisher: 47 ms
+[Pipeline] // withMaven
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

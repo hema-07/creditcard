@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.sapient.creditcard.integration.CreditCardIntegrationTests
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.094 s - in com.sapient.creditcard.integration.CreditCardIntegrationTests

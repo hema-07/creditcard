@@ -4,7 +4,6 @@
 ##### Database  :  H2 
 ##### Test      :  Unit Test
 ##### CI/CD     :  Jenkins
-##### security  : Spring security 2.3.4.RELEASE
 
 ### Functionality
 
@@ -47,12 +46,12 @@ This following values are hitting the endpoint as a request from user.
     CREDIT_BALANCE - for new card, by default 0
 
 
-    Post call : http://localhost:8082/creditcard
+    Post call : http://localhost:8082/add
 
     {
-        "cardNumber":"61789372994",
-        "name":"Boo",
-        "limit":"800.00"
+            "CardNumber":"61789372994",
+            "Name":"Andrew",
+            "Limit":"800.00"
     }
     
     ---------------------------------------
@@ -60,8 +59,6 @@ This following values are hitting the endpoint as a request from user.
 ##### Headers: 
     
     Content-Type:application/json
-    
-    Authorization:Basic YWRtaW46YWRtaW4=
     
     Accept:application/json
     
@@ -73,13 +70,11 @@ For failure, i have implemented error code and error handling.
     
 This endpoint doesn't have body, it directly fetches all credit card data as a list from DB.
 
-    GET call : http://localhost:8082/creditcard  
+    GET call : http://localhost:8082/getAll  
     
 ##### Headers: 
     
     Content-Type:application/json
-    
-    Authorization:Basic YWRtaW46YWRtaW4=
     
     Accept:application/json
     
@@ -107,4 +102,4 @@ https://en.wikipedia.org/wiki/Luhn_algorithm#Example_for_validating_check_digit
     mvn clean verify sonar:sonar \
       -Dsonar.projectKey=CreditCard \
       -Dsonar.host.url=http://localhost:9000 \
-      -Dsonar.login=e5c312631e238b2e9a24ab0acb1e0f31ce668d6a
+      -Dsonar.login=*loginID*

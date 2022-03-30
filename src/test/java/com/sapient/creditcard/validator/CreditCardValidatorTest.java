@@ -13,19 +13,19 @@ import java.math.BigInteger;
 public class CreditCardValidatorTest {
 
     @Autowired
-    private CreditCardValidator creditCardValidator;
+    private CreditCardLuhnValidation creditCardValidator;
 
     @Test
     public void validateCreditCard_success_scenario() {
-        BigInteger creditCardNumber = new BigInteger("61789372994");
-        boolean validateCreditCard = creditCardValidator.validateCreditCard(creditCardNumber);
+        long creditCardNumber = 61789372994L;
+        boolean validateCreditCard = creditCardValidator.checkCardNumberUsingLuhn(creditCardNumber);
         Assert.assertEquals(true, validateCreditCard);
     }
 
     @Test
     public void validateCreditCard_failure_scenario() {
-        BigInteger creditCardNumber = new BigInteger("61789372997");
-        boolean validateCreditCard = creditCardValidator.validateCreditCard(creditCardNumber);
+        long creditCardNumber = 617893785872994L;
+        boolean validateCreditCard = creditCardValidator.checkCardNumberUsingLuhn(creditCardNumber);
         Assert.assertEquals(false, validateCreditCard);
     }
 }

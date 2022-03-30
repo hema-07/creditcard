@@ -1,99 +1,89 @@
 package com.sapient.creditcard.service;
 
+import com.sapient.creditcard.controller.dto.CreditCardRequest;
 import com.sapient.creditcard.entity.CreditCard;
 import com.sapient.creditcard.exception.CreditCardApplicationException;
-import com.sapient.creditcard.repository.CreditCardRepository;
+import com.sapient.creditcard.modal.ErrorResponse;
+import com.sapient.creditcard.validator.CreditCardLuhnValidation;
 import com.sapient.creditcard.validator.CreditCardParameterValidation;
 import com.sapient.creditcard.validator.ValidationResult;
 import com.sapient.creditcard.validator.Validator;
-import org.apache.tomcat.util.codec.binary.Base64;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
+import static com.sapient.creditcard.util.Constants.*;
 
 @Service
-public class CreditCardService {
+public class CreditCardService implements CreditCardServiceInterface {
 
     @Autowired
-    private CreditCardRepository creditCardRepository;
+    private NewCardService newCardService;
+
+    @Autowired
+    private ViewCardService viewCardService;
+
+    @Autowired
+    private CreditCardLuhnValidation creditCardLuhnValidation;
 
     @Autowired
     private Validator[] validators;
 
-    /**
-     * this method will save validated credit card object to DB
-     * @param creditCard validated result from Validator
-     */
-    public void addNewCard(CreditCard creditCard) throws CreditCardApplicationException{
+    private static final Logger logger = LogManager.getLogger(CreditCardService.class);
 
-        creditCard.setCreditAccountId(getRandomNumberGenerator());
-        creditCard.setBalance(new BigDecimal("0"));
+    @Override
+    public CreditCard addNewCardDetails(CreditCardRequest request) throws CreditCardApplicationException, ErrorResponse {
 
-        creditCardRepository.save(creditCard);
+        boolean isValidCard = creditCardLuhnValidation.checkCardNumberUsingLuhn(request.getCardNumber());
 
+        if (!isValidCard) {
+
+            logger.debug("Credit card didn't pass Luhn Algorithm");
+
+            throw new ErrorResponse(CARD_NUMBER_NOT_VALID, CARD_NUMBER_NOT_VALID_DESC);
+        }
+
+        boolean findExistingCard = newCardService.findExistingCardDetails(request);
+
+        if (!findExistingCard) {
+
+            logger.debug("Found Existing card ");
+
+            throw new ErrorResponse(EXISTING_CARD, EXISTING_CARD_DESC);
+
+        }
+        logger.debug("Credit card is not existed in system, passed Luhn Algorithm and creating new card");
+
+        return newCardService.addNewCard(request);
     }
 
     /**
-     * random UUID generator method
-     * @return string value - UUID for creditCard unique Id
-     */
-    public static String getRandomNumberGenerator() {
-
-        String uuid = String.valueOf(UUID.randomUUID());
-
-        return uuid;
-    }
-
-    /**
-     *This method will find the credit card from DB.
-     * @param creditCard this request is a validated response from Validator.
-     * @return true or false
-     * Credit card object is from controller. This method helps to find credit card object from DB.
-     */
-    public Boolean findCreditCard(CreditCard creditCard) {
-
-            List<CreditCard> findCreditCard = creditCardRepository.findByCardNumber(creditCard.getCardNumber(), creditCard.getName());
-
-            if (findCreditCard.isEmpty()) {
-                return true;
-
-            } else {
-                return false;
-            }
-
-    }
-
-
-    /**
-     *This method will return list of credit cards from DB.
+     * This method will return list of credit cards from DB.
+     *
      * @return it returns list of credit cards
      */
-    public List<CreditCard> getAllCreditCardList() throws CreditCardApplicationException{
+    @Override
+    public List<CreditCard> getAllCreditCardDetails() throws CreditCardApplicationException, ErrorResponse {
 
-        Iterable<CreditCard> creditCards = creditCardRepository.findAll();
-
-        return (List<CreditCard>) creditCards;
+        return viewCardService.getAllCreditCardDetails();
     }
 
-    /**
-     *This method will validate the Credit card object.
+    /* This method will validate the Credit card object.
      * @param creditCard this param is a request body from endpoint
      * @return ValidationResult returns a boolean value (valid request: true; invalid request: false) with object if it is valid.
      * invalid result will return boolean value false with error code and description
      */
-    public ValidationResult validate(CreditCard creditCard) {
-        CreditCard validatedCreditCard = null;
+    public ValidationResult validateRequest(CreditCardRequest creditCard) {
+        CreditCardRequest validatedCreditCard = null;
 
-        for (Validator validator: this.validators) {
+        for (Validator validator : this.validators) {
             ValidationResult validationResult = validator.validate(creditCard);
 
             if (validator instanceof CreditCardParameterValidation) {
-                validatedCreditCard = validationResult.getCreditCard();
+                validatedCreditCard = validationResult.getCreditCardRequest();
             }
-            if (! validationResult.isValid()) {
+            if (!validationResult.isValid()) {
                 return validationResult;
             }
         }

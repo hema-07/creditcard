@@ -1,8 +1,8 @@
 package com.sapient.creditcard.validator;
 
-import com.sapient.creditcard.entity.CreditCard;
+import com.sapient.creditcard.controller.dto.CreditCardRequest;
 
 public interface Validator {
 
-    ValidationResult validate(CreditCard creditCard);
+    ValidationResult validate(CreditCardRequest creditCardRequest);
 }

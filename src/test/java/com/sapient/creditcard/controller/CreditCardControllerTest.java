@@ -1,17 +1,25 @@
 package com.sapient.creditcard.controller;
 
+import com.sapient.creditcard.controller.dto.CreditCardRequest;
 import com.sapient.creditcard.entity.CreditCard;
+import com.sapient.creditcard.exception.CreditCardApplicationException;
+import com.sapient.creditcard.modal.ErrorResponse;
+import com.sapient.creditcard.service.CreditCardService;
+import com.sapient.creditcard.validator.ValidationResult;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -20,88 +28,66 @@ public class CreditCardControllerTest {
     @Autowired
     private CreditCardController creditCardController;
 
-    BigInteger creditCardNumber = new BigInteger("61789372994");
+    @MockBean
+    private CreditCardService creditCardService;
+
+    long creditCardNumber = 61789372994L;
     BigDecimal limit = new BigDecimal("1000");
 
+
     @Test
-    public void addCreditCard_success_scenario() {
-        CreditCard card = CreditCard.builder()
+    public void addCreditCard_success_scenario() throws ErrorResponse, CreditCardApplicationException {
+        CreditCardRequest creditCardRequest = CreditCardRequest.builder()
                 .cardNumber(creditCardNumber)
                 .name("Hema")
-                .limit(limit)
+                .limit(new BigDecimal("12949835.00"))
                 .build();
-        ResponseEntity<?> responseEntity = creditCardController.addCreditCard(card);
-//        Assert.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-
-    }
-
-    @Test
-    public void add_existing_credit_card_failure_scenario() {
-        CreditCard card = CreditCard.builder()
+        CreditCard creditCard = CreditCard.builder()
                 .cardNumber(creditCardNumber)
                 .name("Hema")
-                .limit(limit)
+                .limit(new BigDecimal("12949835.00"))
                 .build();
-        creditCardController.addCreditCard(card);
-        ResponseEntity<?> responseEntity1 = creditCardController.addCreditCard(card);
-        Assert.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity1.getStatusCode());
+        Mockito.when(creditCardService.validateRequest(creditCardRequest)).thenReturn(new ValidationResult(true, creditCardRequest));
+        Mockito.when(creditCardService.addNewCardDetails(creditCardRequest)).thenReturn(creditCard);
 
+        CreditCard actualCreditCard = creditCardService.addNewCardDetails(creditCardRequest);
+        Assert.assertEquals(creditCardNumber, actualCreditCard.getCardNumber());
+        ResponseEntity<Object> actualResponseEntity = creditCardController.addCreditCard(creditCardRequest);
+        Assert.assertEquals(HttpStatus.CREATED, actualResponseEntity.getStatusCode());
     }
 
     @Test
-    public void add_wrong_credit_card_for_failure_scenario() {
-        CreditCard card = CreditCard.builder()
-                .cardNumber(new BigInteger("122334457567656"))
-                .name("Hema")
-                .limit(limit)
-                .build();
-        ResponseEntity<?> responseEntity = creditCardController.addCreditCard(card);
-        Assert.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
-
-    }
-
-    @Test
-    public void add_missing_credit_card_number_for_failure_scenario() {
-        CreditCard card = CreditCard.builder()
-                .name("Hema")
-                .limit(limit)
-                .build();
-        ResponseEntity<?> responseEntity = creditCardController.addCreditCard(card);
-        Assert.assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
-
-    }
-
-    @Test
-    public void add_missing_credit_card_holder_name_scenario() {
-        CreditCard card = CreditCard.builder()
-                .cardNumber(creditCardNumber)
-                .limit(limit)
-                .build();
-        ResponseEntity<?> responseEntity = creditCardController.addCreditCard(card);
-        Assert.assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
-
-    }
-
-    @Test
-    public void add_missing_credit_card_limit_scenario() {
-        CreditCard card = CreditCard.builder()
+    public void addCreditCard_failure_scenario() throws ErrorResponse, CreditCardApplicationException {
+        CreditCardRequest creditCardRequest = CreditCardRequest.builder()
                 .cardNumber(creditCardNumber)
                 .name("Hema")
+                .limit(new BigDecimal("12949835.00"))
                 .build();
-        ResponseEntity<?> responseEntity = creditCardController.addCreditCard(card);
-        Assert.assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+        CreditCard creditCard = CreditCard.builder()
+                .cardNumber(creditCardNumber)
+                .name("Hema")
+                .limit(new BigDecimal("12949835.00"))
+                .build();
+        Mockito.when(creditCardService.validateRequest(creditCardRequest)).thenReturn(new ValidationResult(false, creditCardRequest));
+        Mockito.when(creditCardService.addNewCardDetails(creditCardRequest)).thenReturn(creditCard);
 
+        CreditCard actualCreditCard = creditCardService.addNewCardDetails(creditCardRequest);
+        Assert.assertEquals(creditCardNumber, actualCreditCard.getCardNumber());
+        ResponseEntity<Object> actualResponseEntity = creditCardController.addCreditCard(creditCardRequest);
+        Assert.assertEquals(HttpStatus.BAD_REQUEST, actualResponseEntity.getStatusCode());
     }
 
     @Test
-    public void getAllCreditCard() {
-        CreditCard card = CreditCard.builder()
+    public void getAllCreditCard_success_scenario() throws ErrorResponse, CreditCardApplicationException {
+        CreditCard creditCard = CreditCard.builder()
                 .cardNumber(creditCardNumber)
                 .name("Hema")
-                .limit(limit)
+                .limit(new BigDecimal("12949835.00"))
                 .build();
-        creditCardController.addCreditCard(card);
-        ResponseEntity<?> responseEntity1 = creditCardController.getAllCreditCard();
-        Assert.assertEquals(HttpStatus.OK, responseEntity1.getStatusCode());
+        List<CreditCard> list = new ArrayList<>();
+        list.add(creditCard);
+        Mockito.when(creditCardService.getAllCreditCardDetails()).thenReturn(list);
+        ResponseEntity<Object> actualResponseEntity = creditCardController.getAllCreditCard();
+        Assert.assertEquals(HttpStatus.OK, actualResponseEntity.getStatusCode());
     }
 }

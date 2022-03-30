@@ -1,6 +1,6 @@
 package com.sapient.creditcard.validator;
 
-import com.sapient.creditcard.entity.CreditCard;
+import com.sapient.creditcard.controller.dto.CreditCardRequest;
 import lombok.*;
 
 @Getter
@@ -13,11 +13,11 @@ public class ValidationResult {
     private boolean isValid;
     private String message;
     private String errorCode;
-    private CreditCard creditCard;
+    private CreditCardRequest creditCardRequest;
 
-    public ValidationResult(boolean isValid, CreditCard creditCard) {
+    public ValidationResult(boolean isValid, CreditCardRequest creditCardRequest) {
         this.isValid = isValid;
-        this.creditCard = creditCard;
+        this.creditCardRequest = creditCardRequest;
     }
 
     public ValidationResult(boolean isValid, String message, String errorCode) {

@@ -1,8 +1,7 @@
 package com.sapient.creditcard.exception;
 
+import com.sapient.creditcard.modal.CreditCardResponse;
 import com.sapient.creditcard.modal.ErrorResponse;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.hibernate.JDBCException;
 import org.hibernate.exception.JDBCConnectionException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -16,32 +15,28 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
 import static com.sapient.creditcard.util.Constants.*;
 
 @ControllerAdvice
 @RestController
 public class CustomResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private static final Logger logger = LogManager.getLogger(CustomResponseExceptionHandler.class);
-
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         String errorMsg = ex.getBindingResult().getFieldErrors().stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage).findFirst().orElse(ex.getMessage());
         ErrorResponse errorResponse = ErrorResponse.builder()
-                .errorCode(invalidRequestParam)
-                .errorDescription(invalidRequestParamDetails+errorMsg)
+                .errorCode(INVALID_REQUEST_PARAM)
+                .errorDescription(INVALID_REQUEST_PARAM_DESC.concat(errorMsg))
                 .build();
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @Override
     public ResponseEntity<Object> handleServletRequestBindingException(ServletRequestBindingException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        String errorMsg = ex.getMessage();
         ErrorResponse errorResponse = ErrorResponse.builder()
-                .errorCode(servletBindingError)
-                .errorDescription(servletBindingErrorDetails+errorMsg)
+                .errorCode(SERVLET_BINDING_ERROR)
+                .errorDescription(SERVLET_BINDING_ERROR_DESC)
                 .build();
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
@@ -51,10 +46,26 @@ public class CustomResponseExceptionHandler extends ResponseEntityExceptionHandl
     public final ResponseEntity<Object> handleEJDBCException(JDBCException ex, WebRequest request) {
         String errorMsg = ex.getMessage();
         ErrorResponse errorResponse = ErrorResponse.builder()
-                .errorCode(jdbcException)
-                .errorDescription(jdbcExceptionDetails+errorMsg)
+                .errorCode(JDBC_EXCEPTION)
+                .errorDescription(JDBC_EXCEPTION_DESC.concat(errorMsg))
                 .build();
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(value= {ErrorResponse.class})
+    public final ResponseEntity<Object> handleErrorResponse(ErrorResponse ex, WebRequest request) {
+        CreditCardResponse creditCardResponse = CreditCardResponse.builder()
+                .message(ex.getErrorCode().concat(ex.getErrorDescription()))
+                .build();
+        logger.debug("ErrorResponse {}",ex);
+        return new ResponseEntity<>(creditCardResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(value= {CreditCardApplicationException.class})
+    public final ResponseEntity<Object> handleCreditCardApplicationException(Exception ex, WebRequest request) {
+        String errorMsg = ex.getMessage();
+        return new ResponseEntity<>(errorMsg, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }
 

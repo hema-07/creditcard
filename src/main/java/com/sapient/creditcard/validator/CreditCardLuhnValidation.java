@@ -1,27 +1,26 @@
 package com.sapient.creditcard.validator;
 
 import org.springframework.stereotype.Component;
-
-import java.math.BigInteger;
 import java.util.Arrays;
 
 @Component
-public class CreditCardValidator {
+public class CreditCardLuhnValidation {
 
     /**
      * This method validates credit card and returns true for success and false for invalid credit card.
-     * @param creditCard After validated request, credit card number enters here
+     * @param creditCardNumber After validated request, credit card number enters here
      * @return valid card number: true; invalid card number: false
      */
-    public boolean validateCreditCard(BigInteger creditCard) {
+    public boolean checkCardNumberUsingLuhn(long creditCardNumber) {
 
-        String creditCard1 = String.valueOf(creditCard);
-        int cLength = creditCard1.length();
+        String cardNumber = String.valueOf(creditCardNumber);
+
+        int cLength = cardNumber.length();
 
         int[] cIntArray = new int[cLength];
 
         for (int i = 0; i < cLength; i++) {
-            cIntArray[i] = Integer.parseInt(creditCard1.charAt(i) + "");
+            cIntArray[i] = Integer.parseInt(cardNumber.charAt(i) + "");
         }
 
         for (int i = cLength - 2; i >= 0; i = i - 2) {
@@ -34,15 +33,9 @@ public class CreditCardValidator {
         }
         int sum = Arrays.stream(cIntArray).sum();
 
-        if (sum % 10 == 0) {
-            return true;
-        }
-
-        return false;
+        return sum % 10 == 0;
 
     }
-
-
 
 }
 

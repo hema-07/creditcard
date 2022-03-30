@@ -8,16 +8,17 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class ErrorResponse {
-
+public class ErrorResponse extends Throwable {
 
     @JsonProperty("ErrorCode")
-    private String errorCode;
+    private final String errorCode;
 
     @JsonProperty("Error Description")
-    private String errorDescription;
+    private final String errorDescription;
+
+    public ErrorResponse(String errorCode, String errorDescription) {
+        this.errorCode = errorCode;
+        this.errorDescription = errorDescription;
+    }
 }

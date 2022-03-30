@@ -1,5 +1,6 @@
 package com.sapient.creditcard.validator;
 
+import com.sapient.creditcard.controller.dto.CreditCardRequest;
 import com.sapient.creditcard.entity.CreditCard;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,18 +19,17 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class CreditCardParameterValidationTest {
 
-    BigInteger creditCardNumber = new BigInteger("61789372994");
+    long creditCardNumber = 61789372994L;
 
     @Autowired
     CreditCardParameterValidation creditCardParameterValidation;
 
     @Test
     public void validate_success_scenario() {
-        CreditCard card = CreditCard.builder()
-                .creditAccountId("123")
+        CreditCardRequest card = CreditCardRequest.builder()
                 .cardNumber(creditCardNumber)
                 .name("Hema")
-                .limit(new BigDecimal("12949835.00"))
+                .limit(new BigDecimal("129400"))
                 .build();
         ValidationResult validate = creditCardParameterValidation.validate(card);
         Assert.assertEquals(true, validate.isValid());
@@ -38,10 +38,8 @@ public class CreditCardParameterValidationTest {
 
     @Test
     public void validate_card_number_missing_scenario() {
-        CreditCard card = CreditCard.builder()
-                .creditAccountId("123")
+        CreditCardRequest card = CreditCardRequest.builder()
                 .name("Hema")
-                .limit(new BigDecimal("12949835.00"))
                 .build();
         ValidationResult validate = creditCardParameterValidation.validate(card);
         Assert.assertEquals(false, validate.isValid());
@@ -50,11 +48,9 @@ public class CreditCardParameterValidationTest {
 
     @Test
     public void validate_card_number_length_failure_scenario() {
-        CreditCard card = CreditCard.builder()
-                .creditAccountId("123")
-                .cardNumber(new BigInteger("1298446837638763846394839486369483"))
+        CreditCardRequest card = CreditCardRequest.builder()
+                .cardNumber(1298446837638763845L)
                 .name("Hema")
-                .limit(new BigDecimal("12949835.00"))
                 .build();
         ValidationResult validate = creditCardParameterValidation.validate(card);
         Assert.assertEquals(false, validate.isValid());
@@ -63,9 +59,8 @@ public class CreditCardParameterValidationTest {
 
     @Test
     public void validate_card_limit_failure_scenario() {
-        CreditCard card = CreditCard.builder()
-                .creditAccountId("123")
-                .cardNumber(new BigInteger("61789372994"))
+        CreditCardRequest card = CreditCardRequest.builder()
+                .cardNumber(61789372994L)
                 .name("Hema")
                 .build();
         ValidationResult validate = creditCardParameterValidation.validate(card);
@@ -75,9 +70,8 @@ public class CreditCardParameterValidationTest {
 
     @Test
     public void validate_card_limit_failure_scenario_maxlength() {
-        CreditCard card = CreditCard.builder()
-                .creditAccountId("123")
-                .cardNumber(new BigInteger("61789372994"))
+        CreditCardRequest card = CreditCardRequest.builder()
+                .cardNumber(61789372994L)
                 .name("Hema")
                 .limit(new BigDecimal("1294983547835638767567462938454392800"))
                 .build();
@@ -88,9 +82,8 @@ public class CreditCardParameterValidationTest {
 
     @Test
     public void validate_card_name_failure_scenario_maxlength() {
-        CreditCard card = CreditCard.builder()
-                .creditAccountId("123")
-                .cardNumber(new BigInteger("61789372994"))
+        CreditCardRequest card = CreditCardRequest.builder()
+                .cardNumber(61789372994L)
                 .name("HemaHemaHemaHemaHemaHemaHemaHemaHemaHemaHemaHemaHemaHemaHemaHemaHema")
                 .limit(new BigDecimal("12949835.00"))
                 .build();

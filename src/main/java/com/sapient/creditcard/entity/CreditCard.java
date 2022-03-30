@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 @Entity
 @Table(name = "CREDIT_CARD")
@@ -21,7 +20,7 @@ public class CreditCard implements Serializable {
     private String creditAccountId;
 
     @Column(name = "CREDIT_CARD_NUMBER")
-    private BigInteger cardNumber;
+    private long cardNumber;
 
     @Column(name = "CREDIT_CARD_HOLDER_NAME")
     private String name;

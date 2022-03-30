@@ -1,108 +1,105 @@
 package com.sapient.creditcard.service;
 
+import com.sapient.creditcard.controller.dto.CreditCardRequest;
 import com.sapient.creditcard.entity.CreditCard;
 import com.sapient.creditcard.exception.CreditCardApplicationException;
-import com.sapient.creditcard.repository.CreditCardRepository;
+import com.sapient.creditcard.modal.ErrorResponse;
+import com.sapient.creditcard.validator.CreditCardLuhnValidation;
 import com.sapient.creditcard.validator.ValidationResult;
+import org.junit.Assert;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.Assert.*;
+
+import static com.sapient.creditcard.util.Constants.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CreditCardServiceTest {
+class CreditCardServiceTest {
+
+    @MockBean
+    private NewCardService newCardService;
+
+    @MockBean
+    private ViewCardService viewCardService;
+
+    @MockBean
+    private CreditCardLuhnValidation creditCardLuhnValidation;
 
     @Autowired
     private CreditCardService creditCardService;
 
-    @Autowired
-    private CreditCardRepository creditCardRepository;
-    
     @Test
-    public void addNewCard_success_scenario() throws CreditCardApplicationException {
-        CreditCard card = CreditCard.builder()
-                .creditAccountId("123")
-                .cardNumber(new BigInteger("49927398716"))
+    public void validateRequest() {
+        CreditCardRequest card = CreditCardRequest.builder()
+                .cardNumber(61789372994L)
                 .name("Hema")
                 .limit(new BigDecimal("12949835.00"))
                 .build();
-        creditCardService.addNewCard(card);
-        Optional<CreditCard> creditCard = creditCardRepository.findById("123");
-        assertEquals(true, creditCard.isEmpty());
-    }
-
-    @Test
-    public void addNewCard_failure_scenario() {
-        CreditCard card = CreditCard.builder()
-                .creditAccountId("123")
-                .cardNumber(new BigInteger("49927398716"))
-                .limit(new BigDecimal("12949835.00"))
-                .build();
-        List<CreditCard> creditCard = creditCardRepository.findByCardNumber(new BigInteger("2"),"Hema");
-        assertEquals(false, creditCard.isEmpty());
-    }
-
-    @Test
-    public void findCreditCard_success_scenario() throws CreditCardApplicationException {
-        CreditCard card = CreditCard.builder()
-                .cardNumber(new BigInteger("61789372994"))
-                .name("Hema")
-                .limit(new BigDecimal("12949835.00"))
-                .build();
-        creditCardService.addNewCard(card);
-        Boolean isValid = creditCardService.findCreditCard(card);
-        assertEquals(false, isValid);
-    }
-
-    @Test
-    public void findCreditCard_failure_scenario() {
-        CreditCard card = CreditCard.builder()
-                .creditAccountId("123")
-                .cardNumber(new BigInteger("49924654398715"))
-                .name("Hema")
-                .limit(new BigDecimal("12949835.00"))
-                .build();
-        Boolean isValid = creditCardService.findCreditCard(card);
-        assertEquals(true, isValid);
-    }
-
-    @Test
-    public void getAllCreditCardList_success() throws CreditCardApplicationException {
-        CreditCard card = CreditCard.builder()
-                .cardNumber(new BigInteger("61789372994"))
-                .name("Hema")
-                .limit(new BigDecimal("12949835.00"))
-                .build();
-        creditCardService.addNewCard(card);
-        List<CreditCard> allCreditCardList = creditCardService.getAllCreditCardList();
-        assertEquals(false, allCreditCardList.isEmpty());
-
-    }
-
-    @Test
-    public void getAllCreditCardList_failure() throws CreditCardApplicationException {
-        creditCardRepository.deleteAll();
-        List<CreditCard> allCreditCardList = creditCardService.getAllCreditCardList();
-        assertEquals(0, allCreditCardList.size());
-
-    }
-
-    @Test
-    public void validate() {
-        CreditCard card = CreditCard.builder()
-                .cardNumber(new BigInteger("61789372994"))
-                .name("Hema")
-                .limit(new BigDecimal("12949835.00"))
-                .build();
-        ValidationResult validate = creditCardService.validate(card);
+        ValidationResult validate = creditCardService.validateRequest(card);
         assertEquals(true, validate.isValid());
     }
+
+    @Test
+    public void addNewCardDetails_success_scenario() throws CreditCardApplicationException, ErrorResponse {
+        CreditCard card = CreditCard.builder()
+                .cardNumber(61789372994L)
+                .name("Hema")
+                .limit(new BigDecimal("12949835.00"))
+                .build();
+        CreditCardRequest request = CreditCardRequest.builder()
+                .cardNumber(61789372994L)
+                .name("Hema")
+                .limit(new BigDecimal("12949835.00"))
+                .build();
+        Mockito.when(creditCardLuhnValidation.checkCardNumberUsingLuhn(card.getCardNumber())).thenReturn(true);
+        Mockito.when(newCardService.findExistingCardDetails(request)).thenReturn(true);
+        Mockito.when(newCardService.addNewCard(request)).thenReturn(card);
+        CreditCard actualNewCardDetails = creditCardService.addNewCardDetails(request);
+        Assert.assertEquals(card.getCardNumber(), actualNewCardDetails.getCardNumber());
+    }
+
+    @Test
+    public void addNewCardDetails_failure_scenario() throws CreditCardApplicationException, ErrorResponse {
+        CreditCard card = CreditCard.builder()
+                .creditAccountId("123")
+                .cardNumber(49924654398715L)
+                .name("Hema")
+                .limit(new BigDecimal("12949835.00"))
+                .build();
+        CreditCardRequest request = CreditCardRequest.builder()
+                .cardNumber(49924654398715L)
+                .name("Hema")
+                .limit(new BigDecimal("12949835.00"))
+                .build();
+        Mockito.when(creditCardLuhnValidation.checkCardNumberUsingLuhn(card.getCardNumber())).thenReturn(true);
+        Mockito.when(newCardService.findExistingCardDetails(request)).thenReturn(true);
+        creditCardService.addNewCardDetails(request);
+        Assert.assertNotSame(new ErrorResponse(EXISTING_CARD, EXISTING_CARD_DESC), card);
+    }
+
+    @Test
+    public void getAllCreditCardList_success() throws CreditCardApplicationException, ErrorResponse {
+        CreditCard card = CreditCard.builder()
+                .cardNumber(61789372994L)
+                .name("Hema")
+                .limit(new BigDecimal("12949835.00"))
+                .build();
+
+        List<CreditCard> allCreditCardDetails = new ArrayList<>();
+        allCreditCardDetails.add(card);
+        Mockito.when(viewCardService.getAllCreditCardDetails()).thenReturn(allCreditCardDetails);
+        List<CreditCard> actualCreditCardDetails = viewCardService.getAllCreditCardDetails();
+        Assert.assertEquals(1, actualCreditCardDetails.size());
+    }
+
 }
